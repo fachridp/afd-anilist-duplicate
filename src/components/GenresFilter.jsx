@@ -53,7 +53,7 @@ export default function GenresFilter() {
      <input
       data-filtercamelcase="genres"
       type="text"
-      onClick={handleClearSelectedFilterGenres}
+      onClick={handleOpenDropdownFilter}
       name="genres"
       id="genres"
       placeholder={selectedGenresFilter.length > 0 ? '' : 'Any'}
@@ -74,7 +74,7 @@ export default function GenresFilter() {
 
    <span className="absolute flex items-center inset-y-0 pr-3 top-[1.42rem] right-0 cursor-pointer">
     {selectedGenresFilter.length > 0 ? (
-     <svg data-filter-name="genres" onClick={clearSelectedFilterGenres} className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+     <svg data-filter-name="genres" onClick={handleClearSelectedFilterGenres} className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
       <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
       <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
      </svg>
