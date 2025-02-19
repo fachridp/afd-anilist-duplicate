@@ -21,14 +21,18 @@ export default function NavSearchDropdown() {
  const handleChooseBrowseFilter = useCallback((event) => {
   const { value } = event.currentTarget.dataset;
 
-  const positionBrowseItem = BROWSE_ITEMS.findIndex(item => item.name.includes(value));
+  dispatch(setFilterBrowse(value));
+
+  const newBrowseItems = [...BROWSE_ITEMS];
+  const positionBrowseItem = newBrowseItems.findIndex(item => item.name.includes(value));
   const deleteCount = 1;
-  const id = BROWSE_ITEMS[positionBrowseItem].id;
+  const id = newBrowseItems[positionBrowseItem].id;
   const name = selectedFilterBrowse;
   const newElement = { id, name };
 
-  BROWSE_ITEMS.splice(positionBrowseItem, deleteCount, newElement)
-  dispatch(setFilterBrowse(value));
+  if (positionBrowseItem !== -1) {
+   newBrowseItems.splice(positionBrowseItem, deleteCount, newElement)
+  }
  }, [dispatch, selectedFilterBrowse])
 
  return (
