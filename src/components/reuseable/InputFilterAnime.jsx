@@ -85,7 +85,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
 
       <span className="absolute flex items-center inset-y-0 top-[1.42rem] pr-3 right-0 cursor-pointer">
         {selectedFilter.length > 0 ? (
-          <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" onClick={handleClearSelectedFilter} aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75 py-2" onClick={handleClearSelectedFilter} aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
             <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
           </svg>
