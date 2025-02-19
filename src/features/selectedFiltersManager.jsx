@@ -41,9 +41,15 @@ export const selectedFilterManagerSlice = createSlice({
   },
   setFilterSlider: (state, action) => {
    state.sliderFilters[action.payload.keyFilter] = action.payload.valueFilter;
+  },
+  resetFilterCheckbox: (state, action) => {
+   state.checkboxDropdownFilters[action.payload] = [];
+  },
+  resetFilterRadio: (state, action) => {
+   state.radioDropdownFilters[action.payload] = '';
   }
  }
 });
 
-export const { setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider } = selectedFilterManagerSlice.actions;
+export const { setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider, resetFilterCheckbox, resetFilterRadio } = selectedFilterManagerSlice.actions;
 export default selectedFilterManagerSlice.reducer;

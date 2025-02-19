@@ -7,6 +7,7 @@ import { DROPDOWN_ITEMS, SCREEN_SIZES } from "../../constants/constants";
 
 // Import RTK features
 import { openOverlay, resetOverlay, setMainFilters } from "../../features/dropdownFiltersManager";
+import { resetFilterCheckbox, resetFilterRadio } from "../../features/selectedFiltersManager";
 
 // Import components
 import DropdownCheckboxFilter from "./DropdownCheckboxFilter";
@@ -31,6 +32,10 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
       dispatch(resetOverlay());
     }
   }, [dispatch, filterCamelcase, isDropdownFilter, screenSize]);
+
+  const handleClearSelectedFilter = () => {
+    dispatch(typeofDropdown === 'checkbox' ? resetFilterCheckbox(filterCamelcase) : resetFilterRadio(filterCamelcase));
+  }
 
   useEffect(() => {
     document.addEventListener('click', handleClickedOutsideDropdownFilter);
@@ -75,19 +80,19 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
               </div>
             )
           )}
-
-          <span className="absolute flex items-center inset-y-0 pr-3 right-0 cursor-pointer">
-            {selectedFilter.length > 0 ? (
-              <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
-                <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
-              </svg>
-            ) : (
-              <svg className={`w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75 ${filterfor === 'large' && "lg:fill-gray-500"}`} aria-hidden="true" focusable="false" role="img" data-icon="down-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 45"><path d="M7.827.668a7.297 7.297 0 0 0-5.161 12.458L31.95 42.41a7.298 7.298 0 0 0 10.32-10.32L12.988 2.806A7.272 7.272 0 0 0 7.827.668Z" /><path d="M66.485.577a7.27 7.27 0 0 0-5.16 2.138L31.95 32.09a7.297 7.297 0 0 0 0 10.32 7.296 7.296 0 0 0 10.32 0l29.375-29.375a7.295 7.295 0 0 0 0-10.32 7.268 7.268 0 0 0-5.16-2.138Z" /></svg>
-            )}
-          </span>
         </div>
       </label>
+
+      <span className="absolute flex items-center inset-y-0 top-[1.42rem] pr-3 right-0 cursor-pointer">
+        {selectedFilter.length > 0 ? (
+          <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" onClick={handleClearSelectedFilter} aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
+            <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
+          </svg>
+        ) : (
+          <svg className={`w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75 ${filterfor === 'large' && "lg:fill-gray-500"}`} aria-hidden="true" focusable="false" role="img" data-icon="down-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 45"><path d="M7.827.668a7.297 7.297 0 0 0-5.161 12.458L31.95 42.41a7.298 7.298 0 0 0 10.32-10.32L12.988 2.806A7.272 7.272 0 0 0 7.827.668Z" /><path d="M66.485.577a7.27 7.27 0 0 0-5.16 2.138L31.95 32.09a7.297 7.297 0 0 0 0 10.32 7.296 7.296 0 0 0 10.32 0l29.375-29.375a7.295 7.295 0 0 0 0-10.32 7.268 7.268 0 0 0-5.16-2.138Z" /></svg>
+        )}
+      </span>
 
       {isDropdownFilter && (
         typeofDropdown === "checkbox" ? (
