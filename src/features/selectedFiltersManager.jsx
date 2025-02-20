@@ -50,8 +50,26 @@ export const selectedFilterManagerSlice = createSlice({
    state[action.payload.dropdownType][action.payload.keyFilter] = action.payload.typeOfDropdown === 'checkbox' ? [] : '';
    state[action.payload.mergedDropdownType][action.payload.mergedFilterKey] = action.payload.mergedFilterValue;
   },
+  resetAllFilters: (state) => {
+   state.checkboxDropdownFilters = {
+    genres: [],
+    format: [],
+    streamingOn: [],
+    mergedCheckboxFilters: [],
+   }
+
+   state.radioDropdownFilters = {
+    year: '',
+    season: '',
+    sort: '',
+    airingStatus: '',
+    countryOfOrigin: '',
+    sourceMaterial: '',
+    mergedRadioFilters: [],
+   }
+  }
  }
 });
 
-export const { setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider, resetFilter } = selectedFilterManagerSlice.actions;
+export const { setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider, resetFilter, resetAllFilters } = selectedFilterManagerSlice.actions;
 export default selectedFilterManagerSlice.reducer;

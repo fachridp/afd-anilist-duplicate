@@ -1,11 +1,20 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
+// Import RTK features
+import { resetAllFilters } from "../features/selectedFiltersManager";
 
 export default function ActiveFiltersAnime() {
+ const dispatch = useDispatch();
  // RTK store
  const selectedCheckboxFilter = useSelector((state) => state.selectedFiltersManager.checkboxDropdownFilters.mergedCheckboxFilters);
  const selectedRadioFilter = useSelector((state) => state.selectedFiltersManager.radioDropdownFilters.mergedRadioFilters);
 
  const mergedSelectedFilters = [...selectedCheckboxFilter, ...selectedRadioFilter].map((item, index) => ({ id: index + 1, name: item }));
+
+ const handleClearAllActiveFilters = () => {
+  dispatch(resetAllFilters());
+ }
+
  return (
   <>
    {mergedSelectedFilters.length > 0 && (
@@ -28,7 +37,7 @@ export default function ActiveFiltersAnime() {
 
        {mergedSelectedFilters.length > 1 && (
         <div className="bg-background-500 py-1 px-2 rounded-md cursor-pointer flex items-center gap-x-2 md:hidden md:group-hover/clearAll:flex">
-         <p>Clear All</p>
+         <p onClick={handleClearAllActiveFilters}>Clear All</p>
          <svg className="w-2 fill-gray-200" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
           <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
