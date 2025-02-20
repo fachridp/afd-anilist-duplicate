@@ -7,7 +7,7 @@ import { DROPDOWN_ITEMS, SCREEN_SIZES } from "../../constants/constants";
 
 // Import RTK features
 import { openOverlay, resetOverlay, setMainFilters } from "../../features/dropdownFiltersManager";
-import { resetFilterCheckbox, resetFilterRadio } from "../../features/selectedFiltersManager";
+import { resetFilter } from "../../features/selectedFiltersManager";
 
 // Import components
 import DropdownCheckboxFilter from "./DropdownCheckboxFilter";
@@ -34,7 +34,10 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
   }, [dispatch, filterCamelcase, isDropdownFilter, screenSize]);
 
   const handleClearSelectedFilter = () => {
-    dispatch(typeofDropdown === 'checkbox' ? resetFilterCheckbox(filterCamelcase) : resetFilterRadio(filterCamelcase));
+    const dropdownType = `${typeofDropdown}DropdownFilters`;
+    const keyFilter = filterCamelcase;
+    const typeOfDropdown = typeofDropdown;
+    dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown }));
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Import RTK features
 import { openOverlay, resetOverlay, setMainFilters } from "../features/dropdownFiltersManager";
-import { resetFilterCheckbox } from "../features/selectedFiltersManager";
+import { resetFilter } from "../features/selectedFiltersManager";
 
 // Import constant variables
 import { SCREEN_SIZES } from "../constants/constants";
@@ -32,8 +32,10 @@ export default function GenresFilter() {
  }, [dispatch, isDropdownGenres, screenSize]);
 
  const handleClearSelectedFilterGenres = () => {
+  const dropdownType = "checkboxDropdownFilters";
   const keyFilter = 'genres'
-  dispatch(resetFilterCheckbox(keyFilter));
+  const typeOfDropdown = 'checkbox'
+  dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown }));
  }
 
  useEffect(() => {
