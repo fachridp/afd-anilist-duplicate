@@ -1,9 +1,13 @@
 import { memo } from "react"
 import { Outlet } from "react-router";
 
+// Import components
+import ActiveFiltersAnime from "../components/ActiveFiltersAnime";
+
 function AnimeHome() {
   return (
     <section className="mt-5 mx-5 lg:mx-4">
+      <ActiveFiltersAnime />
       TRENDING NOW
 
       <p>

@@ -15,6 +15,7 @@ import TrendingManga from './pages/TrendingManga.jsx'
 import TopManhwa from './pages/TopManhwa.jsx'
 
 const BrowseFilterContainer = lazy(() => import('./layouts/BrowseFilterContainer.jsx'))
+
 // Anime
 const FiltersAnime = lazy(() => import("./layouts/FiltersAnime.jsx"));
 const AnimeHome = lazy(() => import("./pages/AnimeHome.jsx"));

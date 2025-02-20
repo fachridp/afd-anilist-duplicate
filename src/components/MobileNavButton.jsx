@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
+import { memo } from "react";
 
 // Import RTK features
 import { setMobileNav } from "../features/dropdownFiltersManager";
 import MobileNavItems from "./MobileNavItems";
-import { memo } from "react";
 
 function MobileNavButton() {
  const dispatch = useDispatch();

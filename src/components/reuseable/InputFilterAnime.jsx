@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { memo, useCallback, useEffect } from "react";
+import _ from "lodash";
 
 // Import constant variables
 import { DROPDOWN_ITEMS, SCREEN_SIZES } from "../../constants/constants";
@@ -20,6 +21,8 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
   const screenSize = useSelector((state) => state.innerWidthManager.width < SCREEN_SIZES.large ? 'medium' : 'large');
   const isDropdownFilter = useSelector((state) => state.dropdownFiltersManager.mainFilters[filterCamelcase][screenSize]);
   const selectedFilter = useSelector((state) => state.selectedFiltersManager[`${typeofDropdown}DropdownFilters`][filterCamelcase]);
+  const mergedFilters = useSelector((state) => state.selectedFiltersManager[`${typeofDropdown}DropdownFilters`][`merged${_.capitalize(typeofDropdown)}Filters`]);
+
 
   const handleOpenDropdownFilter = useCallback(() => {
     dispatch(setMainFilters({ filterName: filterCamelcase, screenSize, valueFilter: true }));
@@ -37,7 +40,10 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
     const dropdownType = `${typeofDropdown}DropdownFilters`;
     const keyFilter = filterCamelcase;
     const typeOfDropdown = typeofDropdown;
-    dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown }));
+    const mergedFilterKey = `merged${_.capitalize(typeofDropdown)}Filters`;
+    const mergedFilterValue = mergedFilters.filter(item => !selectedFilter.includes(item));
+
+    dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown, mergedDropdownType: dropdownType, mergedFilterKey, mergedFilterValue }));
   }
 
   useEffect(() => {

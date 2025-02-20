@@ -60,7 +60,7 @@ export default function Header() {
   );
   return (
     <>
-      <header ref={headerRef} className="h-[4.25rem] bg-[#2b2d42] place-content-center relative hidden lg:block lg:z-20 lg:sticky lg:top-0 lg:left-0 duration-[250ms] ease-in-out">
+      <header ref={headerRef} className="h-[4.25rem] bg-[#2b2d42] place-content-center relative hidden lg:block lg:z-20 lg:sticky lg:top-0 lg:left-0 duration-[620ms] ease-in-out">
         <div className="flex max-w-[71.25rem] items-center text-[#bcbedc] font-semibold text-sm">
           <Link to="/" className="ml-30 mr-80">
             <img className="size-[3.125rem]" src={aniListLogo} alt="AniList Logo" />
