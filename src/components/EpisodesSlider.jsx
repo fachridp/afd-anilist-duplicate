@@ -11,7 +11,7 @@ import { setFilterSlider } from "../features/selectedFiltersManager";
 function EpisodesSlider() {
  const dispatch = useDispatch();
 
- const [episodesSlider, setEpisodesSlider] = useState(SLIDERS_VALUES.episodes.defaulValue)
+ const [episodesSlider, setEpisodesSlider] = useState(SLIDERS_VALUES.episodes.defaultValue)
 
  // RTK store
  const episodeSliderValues = useSelector((state) => state.selectedFiltersManager.sliderFilters.episodes, shallowEqual);
@@ -27,6 +27,14 @@ function EpisodesSlider() {
   value !== episodeSliderValues && dispatch(setFilterSlider({ keyFilter, valueFilter }));
  }, [dispatch, episodeSliderValues]);
 
+ const handleResetEpisodesSlider = () => {
+  const keyFilter = 'episodes';
+  const valueFilter = SLIDERS_VALUES.episodes.defaultValue;
+
+  dispatch(setFilterSlider({ keyFilter, valueFilter }));
+  setEpisodesSlider(SLIDERS_VALUES.episodes.defaultValue);
+ }
+
  return (
   <div className="hidden lg:block slider-container row-start-2 mt-8">
    <div className="font-semibold flex justify-between items-center">
@@ -35,7 +43,7 @@ function EpisodesSlider() {
     <div className="flex items-start gap-x-1">
      <p className="text-gray-700 text-xs">{episodeSliderValues.join('- ')}</p>
 
-     <svg className="w-[.6rem] pt-[0.125rem] fill-gray-500 cursor-pointer hover:fill-gray-800 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+     <svg onClick={handleResetEpisodesSlider} className="w-[.6rem] pt-[0.125rem] fill-gray-500 cursor-pointer hover:fill-gray-800 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
       <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
       <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
      </svg>

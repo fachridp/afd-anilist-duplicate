@@ -19,9 +19,10 @@ export default function DropdownBrowse() {
  const handleChooseBrowseFilter = useCallback((event) => {
   const { innerText } = event.currentTarget;
   const { value } = event.currentTarget.dataset;
+
   dispatch(setFilterBrowse(innerText));
 
-  const newBrowseItems = [...newBrowseItems];
+  const newBrowseItems = [...BROWSE_ITEMS];
   const positionBrowseItem = newBrowseItems.findIndex(item => item.name.includes(event.target.innerText));
   const deleteCount = 1;
   const id = newBrowseItems[positionBrowseItem].id;

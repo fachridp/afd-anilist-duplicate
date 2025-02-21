@@ -3551,17 +3551,17 @@ export const SLIDERS_VALUES = {
  year: {
   min: MIN_YEAR,
   max: END_YEAR,
-  defaulValue: [MIN_YEAR, END_YEAR]
+  defaultValue: [MIN_YEAR, END_YEAR]
  },
  episodes: {
   min: MIN_EPS,
   max: MAX_EPS,
-  defaulValue: [MIN_EPS, MAX_EPS]
+  defaultValue: [MIN_EPS, MAX_EPS]
  },
  duration: {
   min: MIN_DUR,
   max: MAX_DUR,
-  defaulValue: [MIN_DUR, MAX_DUR]
+  defaultValue: [MIN_DUR, MAX_DUR]
  },
  minimumTagPercentage: {
   min: MIN_TAG,

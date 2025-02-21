@@ -21,10 +21,10 @@ const initialState = {
   mergedRadioFilters: [],
  },
  sliderFilters: {
-  year: SLIDERS_VALUES.year.defaulValue,
-  episodes: SLIDERS_VALUES.episodes.defaulValue,
-  duration: SLIDERS_VALUES.duration.defaulValue,
-  minimumTagPercentage: SLIDERS_VALUES.minimumTagPercentage.defaultValue
+  year: SLIDERS_VALUES.year.defaultValue,
+  episodes: SLIDERS_VALUES.episodes.defaultValue,
+  duration: SLIDERS_VALUES.duration.defaultValue,
+  minimumTagPercentage: SLIDERS_VALUES.minimumTagPercentage.defaultValue,
  }
 }
 

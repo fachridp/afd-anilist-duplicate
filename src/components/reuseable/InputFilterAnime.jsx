@@ -23,7 +23,6 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
   const selectedFilter = useSelector((state) => state.selectedFiltersManager[`${typeofDropdown}DropdownFilters`][filterCamelcase]);
   const mergedFilters = useSelector((state) => state.selectedFiltersManager[`${typeofDropdown}DropdownFilters`][`merged${_.capitalize(typeofDropdown)}Filters`]);
 
-
   const handleOpenDropdownFilter = useCallback(() => {
     dispatch(setMainFilters({ filterName: filterCamelcase, screenSize, valueFilter: true }));
     dispatch(openOverlay({ screenSize: window.innerWidth }));
