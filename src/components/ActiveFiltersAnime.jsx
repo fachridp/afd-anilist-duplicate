@@ -85,6 +85,16 @@ export default function ActiveFiltersAnime() {
         </div>
        )}
 
+       {JSON.stringify(sliderFilters.minimumTagPercentage) !== JSON.stringify(SLIDERS_VALUES.minimumTagPercentage.defaultValue) && (
+        <div className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/durationSlider">
+         <p>Tags above: {sliderFilters.minimumTagPercentage}%</p>
+         <svg className="w-2 fill-blue-300 hidden group-hover/durationSlider:block" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
+          <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
+         </svg>
+        </div>
+       )}
+
        {activeFilterLength > 1 && (
         <div className="bg-background-500 py-1 px-2 rounded-md cursor-pointer flex items-center gap-x-2 md:hidden md:group-hover/clearAll:flex">
          <p onClick={handleClearAllActiveFilters}>Clear All</p>

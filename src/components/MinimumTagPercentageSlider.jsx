@@ -1,6 +1,6 @@
 import Slider from "rc-slider";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback } from "react";
 
 // Import constant variables
 import { SLIDERS_VALUES } from "../constants/constants";
@@ -11,28 +11,27 @@ import { setFilterSlider } from "../features/selectedFiltersManager";
 function MinimumTagPercentageSlider() {
  const dispatch = useDispatch();
 
- const [minimumTagPercentageSlider, setMinimumTagPercentageSlider] = useState(SLIDERS_VALUES.minimumTagPercentage.defaultValue);
-
  // RTK store
- const minimumTagPercentageSliderValues = useSelector((state) => state.selectedFiltersManager.sliderFilters.minimumTagPercentage, shallowEqual);
+ const minimumTagPercentageSliderAfterChange = useSelector((state) => state.selectedFiltersManager.sliderFilters.minimumTagPercentage, shallowEqual);
+ const minimumTagPercentageSliderChange = useSelector((state) => state.selectedFiltersManager.sliderFilters.minimumTagPercentageChange, shallowEqual);
 
  const handleMinimumTagPercentageSliderChange = (value) => {
-  setMinimumTagPercentageSlider(value);
+  dispatch(setFilterSlider({ keyFilter: 'minimumTagPercentageChange', valueFilter: value }));
  }
 
  const handleMinimumTagPercentageSliderAfterChange = useCallback((value) => {
   const keyFilter = 'minimumTagPercentage';
   const valueFilter = value;
 
-  minimumTagPercentageSliderValues !== value && dispatch(setFilterSlider({ keyFilter, valueFilter }));
- }, [dispatch, minimumTagPercentageSliderValues]);
+  minimumTagPercentageSliderAfterChange !== value && dispatch(setFilterSlider({ keyFilter, valueFilter }));
+ }, [dispatch, minimumTagPercentageSliderAfterChange]);
 
  return (
   <div className="slider-container row-start-2 pl-4">
    <Slider
     min={SLIDERS_VALUES.minimumTagPercentage.min}
     max={SLIDERS_VALUES.minimumTagPercentage.max}
-    value={minimumTagPercentageSlider}
+    value={minimumTagPercentageSliderChange}
     onChange={handleMinimumTagPercentageSliderChange}
     onChangeComplete={handleMinimumTagPercentageSliderAfterChange}
     styles={{

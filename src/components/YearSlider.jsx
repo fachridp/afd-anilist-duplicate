@@ -12,8 +12,8 @@ function YearSlider() {
  const dispatch = useDispatch();
 
  // RTK store
- const yearSliderAfterChange = useSelector((state) => state.selectedFiltersManager.sliderFilters.year, shallowEqual);
  const yearSliderChange = useSelector((state) => state.selectedFiltersManager.sliderFilters.yearChange, shallowEqual);
+ const yearSliderAfterChange = useSelector((state) => state.selectedFiltersManager.sliderFilters.year, shallowEqual);
 
  const handleYearSliderChange = (value) => {
   dispatch(setFilterSlider({ keyFilter: 'yearChange', valueFilter: value }));
