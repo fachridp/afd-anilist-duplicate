@@ -22,9 +22,13 @@ const initialState = {
  },
  sliderFilters: {
   year: SLIDERS_VALUES.year.defaultValue,
+  yearChange: SLIDERS_VALUES.year.defaultValue,
   episodes: SLIDERS_VALUES.episodes.defaultValue,
+  episodesChange: SLIDERS_VALUES.episodes.defaultValue,
   duration: SLIDERS_VALUES.duration.defaultValue,
+  durationChange: SLIDERS_VALUES.duration.defaultValue,
   minimumTagPercentage: SLIDERS_VALUES.minimumTagPercentage.defaultValue,
+  minimumTagPercentageChange: SLIDERS_VALUES.minimumTagPercentage.defaultValue,
  }
 }
 
@@ -66,6 +70,17 @@ export const selectedFilterManagerSlice = createSlice({
     countryOfOrigin: '',
     sourceMaterial: '',
     mergedRadioFilters: [],
+   }
+
+   state.sliderFilters = {
+    year: SLIDERS_VALUES.year.defaultValue,
+    yearChange: SLIDERS_VALUES.year.defaultValue,
+    episodes: SLIDERS_VALUES.episodes.defaultValue,
+    episodesChange: SLIDERS_VALUES.episodes.defaultValue,
+    duration: SLIDERS_VALUES.duration.defaultValue,
+    durationChange: SLIDERS_VALUES.duration.defaultValue,
+    minimumTagPercentage: SLIDERS_VALUES.minimumTagPercentage.defaultValue,
+    minimumTagPercentageChange: SLIDERS_VALUES.minimumTagPercentage.defaultValue,
    }
   }
  }
