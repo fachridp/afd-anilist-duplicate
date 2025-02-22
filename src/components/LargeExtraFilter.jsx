@@ -1,13 +1,13 @@
-import { lazy, memo, Suspense, useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
 // Import reuseable components
 import InputFilterAnime from "./reuseable/InputFilterAnime";
 
 // Import componenets sliders
-const YearSlider = lazy(() => import("./YearSlider"));
-const EpisodesSlider = lazy(() => import("./EpisodesSlider"));
-const DurationSlider = lazy(() => import("./DurationSlider"));
+import YearSlider from "./YearSlider";
+import EpisodesSlider from "./EpisodesSlider";
+import DurationSlider from "./DurationSlider";
 
 // Import RTK features
 import { setExtraFilterButton } from "../features/dropdownFiltersManager";
@@ -46,33 +46,21 @@ function LargeExtraFilter() {
      {...INPUT_FILTERS_PROPS.airingStatus}
     />
 
-    {isExtraFilterLarge && (
-     <Suspense fallback={null}>
-      <YearSlider />
-     </Suspense>
-    )}
+    <YearSlider />
 
     <InputFilterAnime
      key="streamingOn"
      {...INPUT_FILTERS_PROPS.streamingOn}
     />
 
-    {isExtraFilterLarge && (
-     <Suspense fallback={null}>
-      <EpisodesSlider />
-     </Suspense>
-    )}
+    <EpisodesSlider />
 
     <InputFilterAnime
      key="countryOfOrigin"
      {...INPUT_FILTERS_PROPS.countryOfOrigin}
     />
 
-    {isExtraFilterLarge && (
-     <Suspense fallback={null}>
-      <DurationSlider />
-     </Suspense>
-    )}
+    <DurationSlider />
 
     <InputFilterAnime
      key="sourceMaterial"

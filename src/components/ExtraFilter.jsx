@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
+import { memo } from "react";
 
 // Import components
 import LargeExtraFilter from "./LargeExtraFilter";
-import InputFilterAnime from "./reuseable/InputFilterAnime";
-import { memo } from "react";
 import GenresFilter from "./GenresFilter";
+
+// Import reuseable components
+import InputFilterAnime from "./reuseable/InputFilterAnime";
+
+// Import constant variables
 import { INPUT_FILTERS_PROPS } from "../constants/constants";
 
 function ExtraFilter() {
