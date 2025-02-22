@@ -5,6 +5,7 @@ import { SLIDERS_VALUES } from "../constants/constants";
 
 const initialState = {
  browse: 'Anime',
+ searchAnimeFilter: '',
  checkboxDropdownFilters: {
   genres: [],
   format: [],
@@ -36,6 +37,9 @@ export const selectedFilterManagerSlice = createSlice({
  name: "selectedFilterManagerReducer",
  initialState,
  reducers: {
+  setSearchAnimeFilter: (state, action) => {
+   state.searchAnimeFilter = action.payload;
+  },
   setFilterBrowse: (state, action) => {
    state.browse = action.payload;
   },
@@ -90,5 +94,5 @@ export const selectedFilterManagerSlice = createSlice({
  }
 });
 
-export const { setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider, resetFilter, resetAllFilters } = selectedFilterManagerSlice.actions;
+export const { setSearchAnimeFilter, setFilterBrowse, setFilterCheckbox, setFilterRadio, setFilterSlider, resetFilter, resetAllFilters } = selectedFilterManagerSlice.actions;
 export default selectedFilterManagerSlice.reducer;

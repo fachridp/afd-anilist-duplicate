@@ -1,13 +1,13 @@
-import { memo } from "react"
+import { lazy, memo, Suspense } from "react"
 import { useDispatch, useSelector } from "react-redux";
 
 // Import RTK features
 import { toggleAdvancedGenresTag } from "../features/dropdownFiltersManager";
 
 // Import components
-import MinimumTagPercentage from "../components/MinimumTagPercentage";
-import AdvancedGenres from "../components/AdvancedGenres";
-import AdvancedTag from "../components/AdvancedTag";
+const AdvancedGenres = lazy(() => import("../components/AdvancedGenres"));
+const AdvancedTag = lazy(() => import("../components/AdvancedTag"));
+const MinimumTagPercentage = lazy(() => import("../components/MinimumTagPercentage"));
 
 function AdvancedGenresTagContainer() {
  const dispatch = useDispatch();
@@ -28,15 +28,17 @@ function AdvancedGenresTagContainer() {
    </div>
 
    {isAdvancedGenresTag && (
-    <div className="overflow-y-scroll max-h-[60vh] advanced-genres-items">
-     <MinimumTagPercentage />
+    <Suspense fallback={null}>
+     <div className="overflow-y-scroll max-h-[60vh] advanced-genres-items">
+      <MinimumTagPercentage />
 
-     <div className="mt-6 font-bold">
-      <AdvancedGenres />
+      <div className="mt-6 font-bold">
+       <AdvancedGenres />
 
-      <AdvancedTag />
+       <AdvancedTag />
+      </div>
      </div>
-    </div>
+    </Suspense>
    )}
   </div>
  )

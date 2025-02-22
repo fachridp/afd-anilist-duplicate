@@ -1,10 +1,14 @@
-import { memo } from "react";
+import { lazy, memo, Suspense } from "react";
+import { useSelector } from "react-redux";
 
 // Import components
-import MainDataDropdownGenres from "../components/MainDataDropdownGenres";
-import OptionalDataDropdownGenres from "../components/OptionalDataDropdownGenres";
+const MainDataDropdownGenres = lazy(() => import("../components/MainDataDropdownGenres"));
+const OptionalDataDropdownGenres = lazy(() => import("../components/OptionalDataDropdownGenres"));
 
 function DropdownGenresFilterContainer() {
+ // RTK store
+ const isDropdownGenres = useSelector((state) => state.dropdownFiltersManager.mainFilters.genres);
+
  return (
   <div className="max-md:fixed max-md:top-[25vh] max-md:left-[5vw] z-10 md:absolute left-0 md:w-full md:top-[4.6rem]">
    <div className="flex justify-between md:hidden">
@@ -14,13 +18,15 @@ function DropdownGenresFilterContainer() {
    </div>
 
    <div className="bg-background-100 rounded-md overflow-y-auto overflow-scroll-dropdown-filter shadow-md closest-genres-filter max-h-[60vh] max-md:w-[90vw] pl-2 pr-2">
-    {/* Main data */}
-    <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Genres</h3>
-    <MainDataDropdownGenres isAdvancedFilter="false" htmlfor="genres" />
+    {isDropdownGenres && (
+     <Suspense fallback={null}>
+      <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Genres</h3>
+      <MainDataDropdownGenres isAdvancedFilter="false" htmlfor="genres" />
 
-    {/* Optional data */}
-    <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Tags</h3>
-    <OptionalDataDropdownGenres isAdvancedFilter="false" htmlfor="tag" />
+      <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Tags</h3>
+      <OptionalDataDropdownGenres isAdvancedFilter="false" htmlfor="tag" />
+     </Suspense>
+    )}
    </div>
   </div>
  )
