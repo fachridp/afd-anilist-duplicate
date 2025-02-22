@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react";
 
 // Import RTK features
-import { resetAllFilters, setFilterCheckbox, setFilterRadio } from "../features/selectedFiltersManager";
+import { resetAllFilters, setFilterCheckbox, setFilterRadio, setFilterSlider } from "../features/selectedFiltersManager";
 
 // Import constant variables
 import { SLIDERS_VALUES } from "../constants/constants";
@@ -40,6 +40,13 @@ export default function ActiveFiltersAnime() {
   });
  }
 
+ const handleClearActiveSliderFilterItem = (event) => {
+  const { fromFilter } = event.currentTarget.dataset;
+
+  dispatch(setFilterSlider({ keyFilter: fromFilter, valueFilter: SLIDERS_VALUES[fromFilter].defaultValue }));
+  dispatch(setFilterSlider({ keyFilter: `${fromFilter}Change`, valueFilter: SLIDERS_VALUES[fromFilter].defaultValue }));
+ }
+
  const handleClearAllActiveFilters = () => {
   dispatch(resetAllFilters());
  }
@@ -71,7 +78,7 @@ export default function ActiveFiltersAnime() {
        ))}
 
        {JSON.stringify(sliderFilters.year) !== JSON.stringify(SLIDERS_VALUES.year.defaultValue) && (
-        <div className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/yearSlider">
+        <div data-from-filter="year" onClick={handleClearActiveSliderFilterItem} className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/yearSlider">
          <p>Year Range: {sliderFilters.year.join('-')}</p>
 
          <svg className="w-2 fill-blue-300 hidden group-hover/yearSlider:block" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -82,7 +89,7 @@ export default function ActiveFiltersAnime() {
        )}
 
        {JSON.stringify(sliderFilters.episodes) !== JSON.stringify(SLIDERS_VALUES.episodes.defaultValue) && (
-        <div className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/episodesSlider">
+        <div data-from-filter="episodes" onClick={handleClearActiveSliderFilterItem} className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/episodesSlider">
          <p>Episodes: {sliderFilters.episodes.join('-')}</p>
          <svg className="w-2 fill-blue-300 hidden group-hover/episodesSlider:block" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
@@ -92,7 +99,7 @@ export default function ActiveFiltersAnime() {
        )}
 
        {JSON.stringify(sliderFilters.duration) !== JSON.stringify(SLIDERS_VALUES.duration.defaultValue) && (
-        <div className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/durationSlider">
+        <div data-from-filter="duration" onClick={handleClearActiveSliderFilterItem} className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/durationSlider">
          <p>Duration: {sliderFilters.duration.join('-')}</p>
          <svg className="w-2 fill-blue-300 hidden group-hover/durationSlider:block" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
@@ -102,7 +109,7 @@ export default function ActiveFiltersAnime() {
        )}
 
        {JSON.stringify(sliderFilters.minimumTagPercentage) !== JSON.stringify(SLIDERS_VALUES.minimumTagPercentage.defaultValue) && (
-        <div className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/durationSlider">
+        <div data-from-filter="minimumTagPercentage" onClick={handleClearActiveSliderFilterItem} className="flex bg-blue-600 rounded-md cursor-pointer items-center py-1 px-2 gap-x-2 group/durationSlider">
          <p>Tags above: {sliderFilters.minimumTagPercentage}%</p>
          <svg className="w-2 fill-blue-300 hidden group-hover/durationSlider:block" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />

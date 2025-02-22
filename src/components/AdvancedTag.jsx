@@ -37,8 +37,8 @@ export default function AdvancedTag() {
 
      <div className="flex flex-wrap gap-2 pr-2">
       {groupedByCategory[key].map(item => (
-       <label key={item.id} htmlFor={`tag-${item.name}`} className="flex items-center cursor-pointer">
-        <input type="checkbox" className="peer appearance-none" value={item.name} checked={checkboxFilterValues.includes(item.name)} onChange={handleSelectFilterCheckbox} name={`tag-${item.name}`} id={`tag-${item.name}`} />
+       <label key={item.id} htmlFor={`advanced-tag-${item.name}`} className="flex items-center cursor-pointer">
+        <input type="checkbox" className="peer appearance-none" value={item.name} checked={checkboxFilterValues.includes(item.name)} onChange={handleSelectFilterCheckbox} name={`advanced-tag-${item.name}`} id={`advanced-tag-${item.name}`} />
 
         <p className="bg-blue-600 text-xs text-white duration-75 ease-in-out py-[0.3125rem] px-[0.5rem] rounded-md hover:bg-green-400 peer-checked:bg-green-400">{item.name}</p>
        </label>
