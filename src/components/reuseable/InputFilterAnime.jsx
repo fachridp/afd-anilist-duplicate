@@ -40,7 +40,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
     const keyFilter = filterCamelcase;
     const typeOfDropdown = typeofDropdown;
     const mergedFilterKey = `merged${_.capitalize(typeofDropdown)}Filters`;
-    const mergedFilterValue = mergedFilters.filter(item => !selectedFilter.includes(item));
+    const mergedFilterValue = mergedFilters.filter(item => !selectedFilter.includes(item.name));
 
     dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown, mergedDropdownType: dropdownType, mergedFilterKey, mergedFilterValue }));
   }

@@ -36,7 +36,7 @@ export default function GenresFilter() {
   const dropdownType = "checkboxDropdownFilters";
   const keyFilter = 'genres'
   const typeOfDropdown = 'checkbox'
-  const mergedFilterValue = selectedCheckboxFilter.filter(item => !selectedGenresFilter.includes(item))
+  const mergedFilterValue = selectedCheckboxFilter.filter(item => !selectedGenresFilter.includes(item.name))
 
   dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown, mergedDropdownType: dropdownType, mergedFilterKey: "mergedCheckboxFilters", mergedFilterValue }));
  }

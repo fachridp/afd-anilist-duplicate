@@ -41,11 +41,15 @@ export const selectedFilterManagerSlice = createSlice({
   },
   setFilterCheckbox: (state, action) => {
    state.checkboxDropdownFilters[action.payload.keyFilter] = action.payload.valueFilter;
-   state.checkboxDropdownFilters.mergedCheckboxFilters = state.checkboxDropdownFilters.genres.concat(state.checkboxDropdownFilters.format, state.checkboxDropdownFilters.streamingOn).filter(item => item != []);
+   state.checkboxDropdownFilters.mergedCheckboxFilters = state.checkboxDropdownFilters.genres.concat(state.checkboxDropdownFilters.format, state.checkboxDropdownFilters.streamingOn).filter(item => item != []).map((item, index) => (
+    { id: index + 1, name: item, origin: 'checkboxDropdownFilters' }
+   ));
   },
   setFilterRadio: (state, action) => {
    state.radioDropdownFilters[action.payload.keyFilter] = action.payload.valueFilter;
-   state.radioDropdownFilters.mergedRadioFilters = Object.keys(state.radioDropdownFilters).map(key => key !== 'mergedRadioFilters' && state.radioDropdownFilters[key]).filter(item => item !== "" && item !== false);
+   state.radioDropdownFilters.mergedRadioFilters = Object.keys(state.radioDropdownFilters).map(key => key !== 'mergedRadioFilters' && state.radioDropdownFilters[key]).filter(item => item !== "" && item !== false).map((item, index) => (
+    { id: index + 1, name: item, origin: 'radioDropdownFilters' }
+   ));
   },
   setFilterSlider: (state, action) => {
    state.sliderFilters[action.payload.keyFilter] = action.payload.valueFilter;
