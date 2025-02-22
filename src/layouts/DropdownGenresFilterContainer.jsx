@@ -20,7 +20,7 @@ function DropdownGenresFilterContainer() {
           </div>
 
           <div className="bg-background-100 rounded-md overflow-y-auto overflow-scroll-dropdown-filter shadow-md closest-genres-filter max-h-[60vh] max-md:w-[90vw] pl-2 pr-2">
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<p className="text-gray-700 font-semibold text-sm p-2">Loading...</p>}>
               <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Genres</h3>
               <MainDataDropdownGenres isAdvancedFilter="false" htmlfor="genres" />
 

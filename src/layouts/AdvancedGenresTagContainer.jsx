@@ -28,7 +28,7 @@ function AdvancedGenresTagContainer() {
    </div>
 
    {isAdvancedGenresTag && (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<p className="text-gray-700 font-semibold text-sm p-2">Loading...</p>}>
      <div className="overflow-y-scroll max-h-[60vh] advanced-genres-items">
       <MinimumTagPercentage />
 
