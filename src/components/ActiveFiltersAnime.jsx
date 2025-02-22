@@ -11,8 +11,9 @@ export default function ActiveFiltersAnime() {
  const dispatch = useDispatch();
 
  const [activeFilterLength, setActiveFilterLength] = useState(0);
+
  // RTK store
- const selectedFiltersManager = useSelector((state) => state.selectedFiltersManager)
+ const selectedFiltersManager = useSelector((state) => state.selectedFiltersManager);
  const selectedCheckboxFilter = useSelector((state) => state.selectedFiltersManager.checkboxDropdownFilters.mergedCheckboxFilters);
  const selectedRadioFilter = useSelector((state) => state.selectedFiltersManager.radioDropdownFilters.mergedRadioFilters);
  const sliderFilters = useSelector((state) => state.selectedFiltersManager.sliderFilters);
