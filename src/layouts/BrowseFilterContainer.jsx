@@ -19,9 +19,9 @@ export default function BrowseFilterContainer() {
  const isOverlay = useSelector((state) => state.dropdownFiltersManager.overlay);
  const width = useSelector((state) => state.innerWidthManager.width);
 
- const handleToggleDropdownBrowse = useCallback(() => {
+ const handleToggleDropdownBrowse = () => {
   dispatch(toggleDropdownBrowse());
- }, [dispatch]);
+ };
 
  const handleClickedOutsideFilterBrowse = useCallback((event) => {
   if (!event.target.closest('.closest-browse-filter-container') && isDropdownBrowse) { dispatch(toggleDropdownBrowse()) }

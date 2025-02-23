@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Import RTK features
@@ -11,9 +11,9 @@ import { SCREEN_SIZES } from "../constants/constants";
 // Import componenets
 import DropdownGenresFilterContainer from "../layouts/DropdownGenresFilterContainer";
 
-export default function GenresFilter() {
+function GenresFilter() {
  const dispatch = useDispatch();
-
+ console.log("GenresFilter")
  // RTK store
  const screenSize = useSelector((state) => state.innerWidthManager.width < SCREEN_SIZES.large ? 'medium' : 'large');
  const isDropdownGenres = useSelector((state) => state.dropdownFiltersManager.mainFilters.genres[screenSize]);
@@ -94,3 +94,5 @@ export default function GenresFilter() {
   </div>
  )
 }
+
+export default memo(GenresFilter)

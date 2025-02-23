@@ -1,4 +1,4 @@
-import { memo, useRef } from "react"
+import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router";
 
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { setSearchAnimeFilter } from "../features/selectedFiltersManager";
 import { SCREEN_SIZES } from "../constants/constants";
 
-function SearchFilter() {
+export default function SearchFilter() {
  const dispatch = useDispatch();
  const navigate = useNavigate();
 
@@ -51,7 +51,6 @@ function SearchFilter() {
       </svg>
      </span>
 
-
      {searchAnimeFilterValue.length > 0 && (
       <span onClick={handleClearSearchAnimeFilter} className="absolute flex items-center inset-y-0 pr-3 right-0 cursor-pointer">
        <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75" aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -65,5 +64,3 @@ function SearchFilter() {
   </div>
  )
 }
-
-export default memo(SearchFilter)
