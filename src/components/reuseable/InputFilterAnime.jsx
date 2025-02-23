@@ -66,7 +66,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
             name={htmlFor}
             id={htmlFor}
             placeholder={selectedFilter.length > 0 ? '' : 'Any'}
-            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-600 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none data-[filterfor=large]:lg:placeholder:text-gray-600 data-[filterfor=large]:lg:font-semibold`}
+            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none data-[filterfor=large]:lg:placeholder:text-gray-600 data-[filterfor=large]:lg:font-semibold`}
             readOnly
           />
 
@@ -98,7 +98,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
             <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
           </svg>
         ) : (
-          <svg className={`w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75 ${filterfor === 'large' && "lg:fill-gray-500"}`} aria-hidden="true" focusable="false" role="img" data-icon="down-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 45"><path d="M7.827.668a7.297 7.297 0 0 0-5.161 12.458L31.95 42.41a7.298 7.298 0 0 0 10.32-10.32L12.988 2.806A7.272 7.272 0 0 0 7.827.668Z" /><path d="M66.485.577a7.27 7.27 0 0 0-5.16 2.138L31.95 32.09a7.297 7.297 0 0 0 0 10.32 7.296 7.296 0 0 0 10.32 0l29.375-29.375a7.295 7.295 0 0 0 0-10.32 7.268 7.268 0 0 0-5.16-2.138Z" /></svg>
+          <svg className={`w-3 fill-gray-500 hover:fill-gray-600 ease-in-out duration-75 lg:w-[14px] ${filterfor === 'large' && "lg:fill-gray-500"}`} aria-hidden="true" focusable="false" role="img" data-icon="down-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 45"><path d="M7.827.668a7.297 7.297 0 0 0-5.161 12.458L31.95 42.41a7.298 7.298 0 0 0 10.32-10.32L12.988 2.806A7.272 7.272 0 0 0 7.827.668Z" /><path d="M66.485.577a7.27 7.27 0 0 0-5.16 2.138L31.95 32.09a7.297 7.297 0 0 0 0 10.32 7.296 7.296 0 0 0 10.32 0l29.375-29.375a7.295 7.295 0 0 0 0-10.32 7.268 7.268 0 0 0-5.16-2.138Z" /></svg>
         )}
       </span>
 

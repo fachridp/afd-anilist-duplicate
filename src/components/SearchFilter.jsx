@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 // Import RTK features
 import { setSearchAnimeFilter } from "../features/selectedFiltersManager";
+import { SCREEN_SIZES } from "../constants/constants";
 
 function SearchFilter() {
  const dispatch = useDispatch();
@@ -12,7 +13,8 @@ function SearchFilter() {
  const searchAnimeFilterInputRef = useRef(null);
 
  // RTK store
- const searchAnimeFilterValue = useSelector((state) => state.selectedFiltersManager.searchAnimeFilter)
+ const screenSize = useSelector((state) => state.innerWidthManager.width > SCREEN_SIZES.large && 'large')
+ const searchAnimeFilterValue = useSelector((state) => state.selectedFiltersManager.searchAnimeFilter);
 
  const handleSearchAnimeFilter = (event) => {
   const { value } = event.target
@@ -38,13 +40,13 @@ function SearchFilter() {
       type="text"
       name="search"
       id="search"
-      placeholder="Search"
+      placeholder={screenSize === 'large' ? '' : 'Search'}
       onChange={handleSearchAnimeFilter}
       className="bg-background-100 shadow-md w-full py-[0.6875rem] px-9 placeholder:text-gray-600 text-gray-700 focus:outline-none text-[0.8125rem] font-normal rounded-md"
      />
 
      <span className="absolute flex items-center inset-y-0 pl-3">
-      <svg className="w-3 fill-gray-400" aria-hidden="true" focusable="false" role="img" data-icon="search" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 51 60">
+      <svg className="w-3 fill-gray-400 lg:fill-gray-500" aria-hidden="true" focusable="false" role="img" data-icon="search" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 51 60">
        <path d="M25 48a23.85 23.85 0 0 0 9.93-2.16l8.8 12.47a4.001 4.001 0 0 0 6.54-4.61l-8.71-12.35A24 24 0 1 0 25 48Zm0-40a16 16 0 1 1 0 32 16 16 0 0 1 0-32Z" />
       </svg>
      </span>
