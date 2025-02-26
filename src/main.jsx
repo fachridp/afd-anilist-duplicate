@@ -48,7 +48,7 @@ const Forgot = lazy(() => import("./pages/Forgot.jsx"));
 const Reverify = lazy(() => import("./pages/Reverify.jsx"));
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  uri: import.meta.env.PROD ? "https://graphql.anilist.co" : "/graphql",
   cache: new InMemoryCache({
     typePolicies: {
       Query: {

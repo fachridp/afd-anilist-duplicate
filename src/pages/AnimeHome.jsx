@@ -62,10 +62,9 @@ function AnimeHome() {
                         format={animeTrending.format}
                         totalEpisodes={animeTrending.episodes}
                         genres={animeTrending.genres}
-
                       />
                     }
-                    className="bg-white tooltip-anime-wrapper hidden md:block"
+                    className="bg-white tooltip-anime-wrapper hidden md:block z-10"
                   />
                 </div>
               ))}
@@ -73,6 +72,7 @@ function AnimeHome() {
           </div>
 
           {/* Popular this season */}
+
 
           {loading && (<p>Loading...</p>)}
           {error && (<p>{error.message}</p>)}
