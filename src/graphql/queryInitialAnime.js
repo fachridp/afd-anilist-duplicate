@@ -33,6 +33,7 @@ export const INITIAL_ANIME = gql`
     id 
     title {
       userPreferred
+      english
     }
     coverImage {
       extraLarge 

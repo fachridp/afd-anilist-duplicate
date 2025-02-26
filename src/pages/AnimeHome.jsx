@@ -42,7 +42,7 @@ function AnimeHome() {
                     className="rounded-md min-[1041px]:w-full grid grid-rows-[min-content,_auto] group">
 
                     <div className="h-[200px] min-[1041px]:h-[270px]">
-                      <img src={width === 'medium' ? animeTrending.coverImage.large : animeTrending.coverImage.extraLarge} alt={animeTrending.title.romaji} className="shadow-md h-full overflow-hidden rounded-md cursor-pointer object-cover" />
+                      <img width={184} height={270} src={width === 'medium' ? animeTrending.coverImage.large : animeTrending.coverImage.extraLarge} alt={_.lowerCase(animeTrending.title.english)} className="shadow-md h-full overflow-hidden rounded-md cursor-pointer object-cover" />
                     </div>
                   </Link>
 
