@@ -17,7 +17,7 @@ function ExtraFilter() {
  return (
   <>
    <div className={`row-start-2 col-start-1 col-end-12 max-lg:overflow-x-scroll w-full max-lg:pb-1 overflow-scroll-wrap snap-x snap-mandatory lg:block md:max-lg:-mb-96 md:max-lg:pb-96 ${!isExtraFilterMobile && "hidden"}`}>
-    <div className="flex gap-x-4 w-max items-end max-lg:mr-8 lg:gap-x-6">
+    <div className="flex gap-x-4 w-max items-end max-lg:mr-8 min-[1100px]:gap-x-7">
      <GenresFilter />
 
      <InputFilterAnime

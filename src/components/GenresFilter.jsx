@@ -13,7 +13,7 @@ import DropdownGenresFilterContainer from "../layouts/DropdownGenresFilterContai
 
 function GenresFilter() {
  const dispatch = useDispatch();
- console.log("GenresFilter")
+
  // RTK store
  const screenSize = useSelector((state) => state.innerWidthManager.width < SCREEN_SIZES.large ? 'medium' : 'large');
  const isDropdownGenres = useSelector((state) => state.dropdownFiltersManager.mainFilters.genres[screenSize]);

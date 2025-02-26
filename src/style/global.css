@@ -126,6 +126,10 @@ main .advanced-genres .advanced-genres-items::-webkit-scrollbar-track {
   display: none;
 }
 
+main .anime-trending-wrapper .tooltip-anime-wrapper {
+  background-color: white;
+}
+
 @theme {
   --color-*: initial;
   --color-background: rgb(237, 241, 245);
@@ -203,4 +207,5 @@ main .advanced-genres .advanced-genres-items::-webkit-scrollbar-track {
   --color-red-700: rgb(117, 0, 20);
   --font-roboto: "Roboto", serif;
   --breakpoint-md: 47.9375rem;
+  --breakpoint-lg: 65rem;
 }

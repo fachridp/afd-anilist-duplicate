@@ -1,9 +1,13 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router";
+import { useDebounce } from "react-use";
+import _ from "lodash";
 
 // Import RTK features
 import { setSearchAnimeFilter } from "../features/selectedFiltersManager";
+
+// Import constant variables
 import { SCREEN_SIZES } from "../constants/constants";
 
 export default function SearchFilter() {
@@ -11,16 +15,17 @@ export default function SearchFilter() {
  const navigate = useNavigate();
 
  const searchAnimeFilterInputRef = useRef(null);
+ const [searchQuery, setSearchQuery] = useState('');
 
  // RTK store
  const screenSize = useSelector((state) => state.innerWidthManager.width > SCREEN_SIZES.large && 'large')
  const searchAnimeFilterValue = useSelector((state) => state.selectedFiltersManager.searchAnimeFilter);
+ const selectedBrowse = useSelector((state) => _.lowerCase(state.selectedFiltersManager.browse))
 
  const handleSearchAnimeFilter = (event) => {
-  const { value } = event.target
-
-  dispatch(setSearchAnimeFilter(value))
-  navigate(value.length > 0 ? `search/anime/${value}` : `search/anime`)
+  const value = event.target.value;
+  setSearchQuery(value)
+  navigate(value.length > 0 ? `search/${selectedBrowse}?search=${value}` : `search/anime`)
  }
 
  const handleClearSearchAnimeFilter = () => {
@@ -29,6 +34,10 @@ export default function SearchFilter() {
 
   navigate('search/anime')
  }
+
+ useDebounce(() => {
+  dispatch(setSearchAnimeFilter(searchQuery));
+ }, 500, [searchQuery])
  return (
   <div className="lg:shrink-0 col-end-11 col-start-1 lg:w-[10.625rem]">
    <label htmlFor="search">
@@ -40,6 +49,7 @@ export default function SearchFilter() {
       type="text"
       name="search"
       id="search"
+      value={searchQuery}
       placeholder={screenSize === 'large' ? '' : 'Search'}
       onChange={handleSearchAnimeFilter}
       className="bg-background-100 shadow-md w-full py-[0.6875rem] px-9 placeholder:text-gray-600 text-gray-700 focus:outline-none text-[0.8125rem] font-normal rounded-md"

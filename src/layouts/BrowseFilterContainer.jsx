@@ -37,7 +37,7 @@ export default function BrowseFilterContainer() {
 
  return (
   <main className={`max-w-[71.25rem] mx-auto ${width < SCREEN_SIZES.medium && isOverlay && 'overlay'}`}>
-   <section className="flex items-center gap-x-5 text-[2rem] text-text font-[900] pt-2 cursor-pointer w-fit pr-4 closest-browse-filter-container lg:hidden mx-4" onClick={handleToggleDropdownBrowse}>
+   <section className="flex items-center gap-x-5 text-[2rem] text-text font-[900] pt-2 cursor-pointer w-fit pr-4 closest-browse-filter-container lg:hidden mx-3" onClick={handleToggleDropdownBrowse}>
 
     <BrowseFilter />
    </section>

@@ -11,13 +11,14 @@ import 'rc-slider/assets/index.css';
 import store from './store/store.js'
 
 import Header from './layouts/Header.jsx'
-
-import BrowseFilterContainer from './layouts/BrowseFilterContainer.jsx'
+const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+const BrowseFilterContainer = lazy(() => import('./layouts/BrowseFilterContainer.jsx'));
+const FiltersAnime = lazy(() => import("./layouts/FiltersAnime.jsx"));
+const ActiveFiltersAnime = lazy(() => import('./components/ActiveFiltersAnime.jsx'));
 
 // Anime
-const FiltersAnime = lazy(() => import("./layouts/FiltersAnime.jsx"));
 const AnimeHome = lazy(() => import("./pages/AnimeHome.jsx"));
-const SearchAnimeHome = lazy(() => import("./pages/SearchAnimeHome.jsx"));
+const SearchedAnimeHome = lazy(() => import("./pages/SearchedAnimeHome.jsx"));
 const Top100Anime = lazy(() => import("./pages/Top100Anime.jsx"));
 const TrendingAnime = lazy(() => import("./pages/TrendingAnime.jsx"));
 const TopMovies = lazy(() => import("./pages/TopMovies.jsx"));
@@ -47,8 +48,24 @@ const Forgot = lazy(() => import("./pages/Forgot.jsx"));
 const Reverify = lazy(() => import("./pages/Reverify.jsx"));
 
 const client = new ApolloClient({
-  uri: 'https://graphql.anilist.co',
-  cache: new InMemoryCache(),
+  uri: "/graphql",
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          Page: {
+            keyArgs: ["search"],
+            merge(existing = {}, incoming) {
+              return {
+                ...incoming,
+                media: [...(existing.media || []), ...(incoming.media || [])]
+              }
+            }
+          }
+        }
+      }
+    }
+  }),
 });
 
 createRoot(document.getElementById('root')).render(
@@ -60,11 +77,17 @@ createRoot(document.getElementById('root')).render(
             <Route element={<Header />}>
               <Route element={<BrowseFilterContainer />}>
                 <Route element={<FiltersAnime />}>
-                  <Route index element={<AnimeHome />} />
-                  <Route path='search/anime/:query?' element={<SearchAnimeHome />} />
-                  <Route path='search/anime/top-100' element={<Top100Anime />} />
-                  <Route path='search/anime/trending' element={<TrendingAnime />} />
-                  <Route path='search/anime/top-movies' element={<TopMovies />} />
+                  <Route element={<ActiveFiltersAnime />}>
+                    <Route path='/' element={<AnimeHome />} />
+                    <Route path='search/anime' element={<AnimeHome />}>
+                      <Route path=':querySearch?' element={<SearchedAnimeHome />} />
+                    </Route>
+
+
+                    <Route path='search/anime/top-100' element={<Top100Anime />} />
+                    <Route path='search/anime/trending' element={<TrendingAnime />} />
+                    <Route path='search/anime/top-movies' element={<TopMovies />} />
+                  </Route>
                 </Route>
 
                 <Route element={<FiltersManga />}>
@@ -72,6 +95,8 @@ createRoot(document.getElementById('root')).render(
                   <Route path='search/manga/top-100' element={<Top100Manga />} />
                   <Route path='search/manga/trending' element={<TrendingManga />} />
                 </Route>
+
+
                 <Route path='search/manga/top-manhwa' element={<TopManhwa />} />
 
                 <Route path='search/characters' element={<SearchCharactersHome />} />
@@ -87,6 +112,8 @@ createRoot(document.getElementById('root')).render(
               <Route path='signup' element={<Signup />} />
               <Route path='forgot' element={<Forgot />} />
               <Route path='reverify' element={<Reverify />} />
+
+              <Route path='*' element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
