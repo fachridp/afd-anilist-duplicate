@@ -62,7 +62,7 @@ function GenresFilter() {
       name="genres"
       id="genres"
       placeholder={selectedGenresFilter.length > 0 ? '' : 'Any'}
-      className={`bg-background-100 closest-genres-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md`}
+      className={`bg-background-100 closest-genres-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 lg:placeholder:text-gray-600 lg:placeholder:font-bold text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md`}
       readOnly
      />
 
