@@ -28,7 +28,7 @@ export default function TooltipAnime({ nextEpisode, timeUntilAiring, averageScor
    <div className='flex gap-x-2 items-start'>
     {genresPropObj.map((genre, index) => (
      index < 3 && (
-      <p key={genre.id} className='bg-red-300 rounded-md text-white px-2 py-2 text-xs'>{genre.name}</p>
+      <p key={genre.id} className='bg-red-300 rounded-full text-white py-0.5 px-3 text-xs lowercase'>{genre.name}</p>
      )
     ))}
    </div>
