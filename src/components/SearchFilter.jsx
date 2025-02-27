@@ -30,6 +30,7 @@ export default function SearchFilter() {
 
  const handleClearSearchAnimeFilter = () => {
   dispatch(setSearchAnimeFilter(''))
+  setSearchQuery('')
   searchAnimeFilterInputRef.current.value = '';
 
   navigate('search/anime')
