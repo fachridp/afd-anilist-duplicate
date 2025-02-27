@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { DROPDOWN_ITEMS } from '../constants/constants'
 
 // Import RTK features
-import { setFilterCheckbox } from "../features/selectedFiltersManager";
+import { setFilterCheckbox, setSearchingFilter } from "../features/selectedFiltersManager";
 
 function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
   const dispatch = useDispatch();
@@ -22,6 +22,8 @@ function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
     const keyFilter = 'genres';
 
     dispatch(setFilterCheckbox({ keyFilter, valueFilter: checked ? value = [...checkboxFilterValues, value] : checkboxFilterValues.filter(item => item !== value) }));
+
+    dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
   }, [checkboxFilterValues, dispatch]);
   return (
     <>
