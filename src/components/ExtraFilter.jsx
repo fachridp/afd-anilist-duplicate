@@ -4,6 +4,7 @@ import { memo } from "react";
 // Import components
 import LargeExtraFilter from "./LargeExtraFilter";
 import GenresFilter from "./GenresFilter";
+import YearFilter from "./YearFilter";
 
 // Import reuseable components
 import InputFilterAnime from "./reuseable/InputFilterAnime";
@@ -20,10 +21,11 @@ function ExtraFilter() {
     <div className="flex gap-x-4 w-max items-end max-lg:mr-8 min-[1100px]:gap-x-7">
      <GenresFilter />
 
-     <InputFilterAnime
+     <YearFilter />
+     {/* <InputFilterAnime
       key="year"
       {...INPUT_FILTERS_PROPS.year}
-     />
+     /> */}
 
      <InputFilterAnime
       key="season"

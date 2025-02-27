@@ -66,8 +66,8 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
             name={htmlFor}
             id={htmlFor}
             placeholder={selectedFilter.length > 0 ? '' : 'Any'}
-            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md lg:placeholder:text-gray-600 lg:placeholder:font-bold data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none data-[filterfor=large]:lg:placeholder:text-gray-600 data-[filterfor=large]:lg:font-semibold`}
-            readOnly
+            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md lg:placeholder:text-gray-600 lg:placeholder:font-bold data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none data-[filterfor=large]:lg:placeholder:text-gray-600 data-[filterfor=large]:lg:font-semibold data-[filtercamelcase=year]:lg:cursor-text`}
+            readOnly={filterCamelcase === 'year' && screenSize === 'large' ? false : true}
           />
 
           {typeofDropdown === 'radio' && (
@@ -93,7 +93,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
 
       <span className="absolute flex items-center inset-y-0 top-[1.42rem] pr-3 right-0 cursor-pointer">
         {selectedFilter.length > 0 ? (
-          <svg className="w-3 fill-gray-400 hover:fill-gray-500 ease-in-out duration-75 py-2" onClick={handleClearSelectedFilter} aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <svg className="w-3 fill-gray-500 hover:fill-gray-600 ease-in-out duration-75 py-2 lg:w-3.5" onClick={handleClearSelectedFilter} aria-hidden="true" focusable="false" role="img" data-icon="cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path d="m2.576 1.868-.707.707a1.5 1.5 0 0 0 0 2.122l13.435 13.435a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.122L4.697 1.868a1.5 1.5 0 0 0-2.121 0Z" />
             <path d="M15.304 1.868 1.869 15.303a1.5 1.5 0 0 0 0 2.122l.707.707a1.5 1.5 0 0 0 2.121 0L18.132 4.697a1.5 1.5 0 0 0 0-2.122l-.707-.707a1.5 1.5 0 0 0-2.121 0Z" />
           </svg>

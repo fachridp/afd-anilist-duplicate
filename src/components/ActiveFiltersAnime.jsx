@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 import _ from "lodash";
 
 // Import RTK features
-import { resetAllFilters, setFilterCheckbox, setFilterRadio, setFilterSlider, setSearchAnimeFilter } from "../features/selectedFiltersManager";
+import { resetAllFilters, setFilterCheckbox, setFilterRadio, setFilterSlider, setSearchAnimeFilter, setSearchingFilter } from "../features/selectedFiltersManager";
 
 // Import constant variables
 import { SLIDERS_VALUES } from "../constants/constants";
@@ -40,6 +40,9 @@ export default function ActiveFiltersAnime() {
     }
    }
   });
+
+  dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
+  dispatch(setSearchingFilter({ keyFilter: 'searchYearFilter', valueFilter: '' }));
  }
 
  const handleClearActiveSliderFilterItem = (event) => {
@@ -56,6 +59,8 @@ export default function ActiveFiltersAnime() {
  const handleClearAllActiveFilters = () => {
   dispatch(resetAllFilters());
   dispatch(setSearchAnimeFilter(''));
+  dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
+  dispatch(setSearchingFilter({ keyFilter: 'searchYearFilter', valueFilter: '' }));
  }
 
  // eslint-disable-next-line react-hooks/exhaustive-deps
