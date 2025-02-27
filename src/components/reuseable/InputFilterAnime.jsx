@@ -66,7 +66,7 @@ function InputFilterAnime({ htmlFor, filterTitle, filterCamelcase, typeofDropdow
             name={htmlFor}
             id={htmlFor}
             placeholder={selectedFilter.length > 0 ? '' : 'Any'}
-            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md lg:placeholder:text-gray-600 lg:placeholder:font-bold data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none data-[filterfor=large]:lg:placeholder:text-gray-600 data-[filterfor=large]:lg:font-semibold data-[filtercamelcase=year]:lg:cursor-text`}
+            className={`bg-background-100 closest-${filterCamelcase}-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-600 focus:outline-none cursor-pointer placeholder:text-[0.8125rem] font-semibold rounded-md lg:placeholder:font-bold data-[filterfor=large]:lg:bg-background-200 data-[filterfor=large]:lg:shadow-none`}
             readOnly={filterCamelcase === 'year' && screenSize === 'large' ? false : true}
           />
 

@@ -77,7 +77,7 @@ function GenresFilter() {
       value={searchedGenresFilter}
       onChange={handleSearchGenresFilter}
       placeholder={selectedGenresFilter.length > 0 ? '' : 'Any'}
-      className={`bg-background-100 closest-genres-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-500 lg:placeholder:text-gray-600 lg:placeholder:font-bold text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md lg:cursor-text peer ${selectedGenresFilter.length > 0 && 'not-focus:text-white'}`}
+      className={`bg-background-100 closest-genres-filter shadow-md w-full py-[0.6875rem] pl-4 px-4 placeholder:font-semibold placeholder:text-gray-600 lg:placeholder:font-bold lg:text-gray-700 focus:outline-none cursor-pointer text-[0.8125rem] font-normal rounded-md lg:cursor-text peer ${selectedGenresFilter.length > 0 && 'not-focus:text-white'}`}
       readOnly={screenSize === 'large' ? false : true}
      />
 
