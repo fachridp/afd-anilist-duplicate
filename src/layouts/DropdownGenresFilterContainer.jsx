@@ -1,4 +1,5 @@
 import { lazy, memo, Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 
 // Import components
@@ -20,7 +21,13 @@ function DropdownGenresFilterContainer() {
           </div>
 
           <div className="bg-background-100 rounded-md overflow-y-auto overflow-scroll-dropdown-filter shadow-md closest-genres-filter max-h-[60vh] max-md:w-[90vw] px-2 pb-2">
-            <Suspense fallback={<p className="text-gray-700 font-semibold text-sm p-2">Loading...</p>}>
+            <Suspense fallback={
+              Array(18).fill(0).map((_, index) => (
+                <div key={index}>
+                  <Skeleton width="100%" className="rounded-md" />
+                </div>
+              ))
+            }>
               <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Genres</h3>
               <MainDataDropdownGenres isAdvancedFilter="false" htmlfor="genres" />
 

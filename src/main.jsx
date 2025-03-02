@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import "./style/global.css"
 import 'rc-slider/assets/index.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 // Import RTK store
 import store from './store/store.js'

@@ -1,13 +1,13 @@
-import { lazy, memo, Suspense } from "react"
+import { memo } from "react"
 import { useDispatch, useSelector } from "react-redux";
 
 // Import RTK features
 import { toggleAdvancedGenresTag } from "../features/dropdownFiltersManager";
 
 // Import components
-const AdvancedGenres = lazy(() => import("../components/AdvancedGenres"));
-const AdvancedTag = lazy(() => import("../components/AdvancedTag"));
-const MinimumTagPercentage = lazy(() => import("../components/MinimumTagPercentage"));
+import MinimumTagPercentage from "../components/MinimumTagPercentage";
+import AdvancedGenres from "../components/AdvancedGenres";
+import AdvancedTag from "../components/AdvancedTag";
 
 function AdvancedGenresTagContainer() {
  const dispatch = useDispatch();
@@ -27,19 +27,15 @@ function AdvancedGenresTagContainer() {
     <p className="text-gray-800 hover:text-gray-900 ease-in-out duration-75 flex-1">Advanced Genres & Tag Filters</p>
    </div>
 
-   {isAdvancedGenresTag && (
-    <Suspense fallback={<p className="text-gray-700 font-semibold text-sm p-2">Loading...</p>}>
-     <div className="overflow-y-scroll max-h-[60vh] advanced-genres-items">
-      <MinimumTagPercentage />
+   <div className={`overflow-y-scroll max-h-[60vh] advanced-genres-items ${isAdvancedGenresTag ? ' advanced-genres-items-open' : ''}`}>
+    <MinimumTagPercentage />
 
-      <div className="mt-6 font-bold">
-       <AdvancedGenres />
+    <div className="mt-6 font-bold">
+     <AdvancedGenres />
 
-       <AdvancedTag />
-      </div>
-     </div>
-    </Suspense>
-   )}
+     <AdvancedTag />
+    </div>
+   </div>
   </div>
  )
 }

@@ -38,6 +38,15 @@ main .overflow-scroll-dropdown-filter::-webkit-scrollbar-track {
   display: none;
 }
 
+
+main .advanced-genres-items {
+  max-height: 0;
+}
+
+main .advanced-genres-items-open {
+  max-height: 399px;
+}
+
 main .slider-container .rc-slider .rc-slider-handle-1:hover::before,
 main .slider-container .rc-slider .rc-slider-handle-2:hover::before {
   display: block;

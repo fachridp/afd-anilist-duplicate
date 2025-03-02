@@ -8,7 +8,7 @@ export const INITIAL_ANIME = gql`
    }
   }
   season: Page(page:1, perPage:6) { #popular this season
-   media(season:$season,seasonYear:$seasonYear,sort:POPULARITY_DESC,type:ANIME, isAdult:false) {
+   media(season: $season,seasonYear:$seasonYear,sort:POPULARITY_DESC,type:ANIME, isAdult:false) {
    ...media
    }
   }
