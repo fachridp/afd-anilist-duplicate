@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router";
 import _ from "lodash";
 
@@ -9,7 +9,7 @@ import { resetAllFilters, setFilterCheckbox, setFilterRadio, setFilterSlider, se
 // Import constant variables
 import { SLIDERS_VALUES } from "../constants/constants";
 
-export default function ActiveFiltersAnime() {
+function ActiveFiltersAnime() {
  const dispatch = useDispatch();
 
  const [activeFilterLength, setActiveFilterLength] = useState(0);
@@ -194,3 +194,5 @@ export default function ActiveFiltersAnime() {
   </>
  )
 }
+
+export default memo(ActiveFiltersAnime)

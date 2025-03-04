@@ -50,7 +50,8 @@ function GenresFilter() {
   const mergedFilterValue = selectedCheckboxFilter.filter(item => !selectedGenresFilter.includes(item.name))
 
   dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown, mergedDropdownType: dropdownType, mergedFilterKey: "mergedCheckboxFilters", mergedFilterValue }));
-  dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
+
+  searchedGenresFilter.length > 0 && dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
   genresFilterRef.current.value = "";
  }
 
@@ -103,9 +104,7 @@ function GenresFilter() {
     )}
    </span>
 
-   {isDropdownGenres && (
-    <DropdownGenresFilterContainer />
-   )}
+   <DropdownGenresFilterContainer />
   </div>
  )
 }

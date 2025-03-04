@@ -38,7 +38,6 @@ main .overflow-scroll-dropdown-filter::-webkit-scrollbar-track {
   display: none;
 }
 
-
 main .advanced-genres-items {
   max-height: 0;
 }

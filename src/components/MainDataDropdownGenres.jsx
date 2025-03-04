@@ -1,6 +1,7 @@
-import { memo, useCallback } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { debounce } from "lodash";
 
 // Import constant variables
 import { DROPDOWN_ITEMS } from '../constants/constants'
@@ -15,7 +16,16 @@ function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
   const checkboxFilterValues = useSelector((state) => state.selectedFiltersManager.checkboxDropdownFilters.genres);
   const searchedGenresFilter = useSelector((state) => state.selectedFiltersManager.searchGenresFilter);
 
-  const searchedGenres = Object.values(DROPDOWN_ITEMS.genres).filter(value => value.name.toLowerCase().includes(searchedGenresFilter.toLowerCase()));
+  const debouncedSearchGenres = useMemo(() => debounce((query, setFiltered) => {
+    const filtered = Object.values(DROPDOWN_ITEMS.genres).filter(value => value.name.toLowerCase().includes(query.toLowerCase()));
+    setFiltered(filtered);
+  }, 300), []);
+
+  const [filteredGenres, setFilteredGenres] = useState(Object.values(DROPDOWN_ITEMS.genres));
+
+  useEffect(() => {
+    debouncedSearchGenres(searchedGenresFilter, setFilteredGenres)
+  }, [debouncedSearchGenres, searchedGenresFilter])
 
   const handleSelectFilterCheckbox = useCallback((event) => {
     let { value, checked } = event.target;
@@ -27,7 +37,7 @@ function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
   }, [checkboxFilterValues, dispatch]);
   return (
     <>
-      {searchedGenres && searchedGenres.map(data => (
+      {filteredGenres.map(data => (
         <label key={data.id} data-isadvancedfilter={isAdvancedFilter} htmlFor={`${htmlfor}-${data.name}`} className="flex justify-between items-center cursor-pointer data-[isadvancedfilter=false]:hover:bg-background-200 duration-75 ease-in-out rounded-md data-[isadvancedfilter=false]:p-2 mt-1 group relative data-[isadvancedfilter=false]:flex-row-reverse">
           <input type="checkbox" value={data.name} checked={checkboxFilterValues.includes(data.name)} onChange={handleSelectFilterCheckbox} className="peer appearance-none" name={`${htmlfor}-${data.name}`} id={`${htmlfor}-${data.name}`} />
           <p data-isadvancedfilter={isAdvancedFilter} className="text-gray-700 font-semibold group-hover:text-blue-600 duration-75 ease-in-out md:text-sm data-[isadvancedfilter=true]:peer-checked:bg-green-400 data-[isadvancedfilter=true]:bg-blue-600 data-[isadvancedfilter=true]:text-white data-[isadvancedfilter=true]:rounded-md data-[isadvancedfilter=true]:py-[5px] data-[isadvancedfilter=true]:px-[8px] data-[isadvancedfilter=true]:text-xs data-[isadvancedfilter=true]:hover:bg-green-400">{data.name}</p>

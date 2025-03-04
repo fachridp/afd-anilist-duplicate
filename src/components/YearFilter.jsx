@@ -52,7 +52,8 @@ function YearFilter() {
   const mergedFilterValue = selectedRadioFilter.filter(item => !item.name.includes(item.name))
 
   dispatch(resetFilter({ dropdownType, keyFilter, typeOfDropdown, mergedDropdownType: dropdownType, mergedFilterKey: "mergedRadioFilters", mergedFilterValue }));
-  dispatch(setSearchingFilter({ keyFilter: 'searchYearFilter', valueFilter: '' }));
+
+  searchedYearFilter.length > 0 && dispatch(setSearchingFilter({ keyFilter: 'searchYearFilter', valueFilter: '' }));
   yearFilterRef.current.value = "";
  }
 
