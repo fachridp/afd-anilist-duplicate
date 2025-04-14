@@ -79,7 +79,7 @@ function AnimeHome() {
                           genres={animeTrending?.genres}
                         />
                       }
-                      className="bg-white tooltip-anime-wrapper hidden md:block z-10"
+                      className="tooltip-anime-wrapper hidden md:block"
                     />
                   </div>
                 ))}

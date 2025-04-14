@@ -1,10 +1,12 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { debounce } from "lodash";
 
 // Import constant variables
-import { DROPDOWN_ITEMS } from '../constants/constants'
+import { DROPDOWN_ITEMS } from '../constants/constants';
+
+// Import components
+import GenreSearchResults from "./GenreSearchResults";
 
 // Import RTK features
 import { setFilterCheckbox, setSearchingFilter } from "../features/selectedFiltersManager";
@@ -14,18 +16,12 @@ function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
 
   // RTK store
   const checkboxFilterValues = useSelector((state) => state.selectedFiltersManager.checkboxDropdownFilters.genres);
-  const searchedGenresFilter = useSelector((state) => state.selectedFiltersManager.searchGenresFilter);
+  const searchKeyword = useSelector((state) => state.selectedFiltersManager.searchGenresFilter); // Users are typing their search queries.
 
-  const debouncedSearchGenres = useMemo(() => debounce((query, setFiltered) => {
-    const filtered = Object.values(DROPDOWN_ITEMS.genres).filter(value => value.name.toLowerCase().includes(query.toLowerCase()));
-    setFiltered(filtered);
-  }, 300), []);
+  const filteredGenres = useMemo(() => {
+    return DROPDOWN_ITEMS.genres.filter(genre => genre.name.toLowerCase().includes(searchKeyword.toLowerCase()))
+  }, [searchKeyword])
 
-  const [filteredGenres, setFilteredGenres] = useState(Object.values(DROPDOWN_ITEMS.genres));
-
-  useEffect(() => {
-    debouncedSearchGenres(searchedGenresFilter, setFilteredGenres)
-  }, [debouncedSearchGenres, searchedGenresFilter])
 
   const handleSelectFilterCheckbox = useCallback((event) => {
     let { value, checked } = event.target;
@@ -35,6 +31,7 @@ function MainDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
 
     dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
   }, [checkboxFilterValues, dispatch]);
+
   return (
     <>
       {filteredGenres.map(data => (

@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { debounce } from "lodash";
+// import { FixedSizeList as List } from "react-window";
 
 // Import constant variables
 import { DROPDOWN_ITEMS } from "../constants/constants";
@@ -19,7 +20,7 @@ function OptionalDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
  const debouncedSearchTags = useMemo(() => debounce((query, setFiltered) => {
   const filtered = Object.values(DROPDOWN_ITEMS.tags).filter(value => value.name.toLowerCase().includes(query.toLowerCase()));
   setFiltered(filtered);
- }, 300), []);
+ }, 600), []);
 
  const [filteredTags, setFilteredTags] = useState(Object.values(DROPDOWN_ITEMS.tags));
 
@@ -55,6 +56,7 @@ function OptionalDataDropdownGenres({ isAdvancedFilter, htmlfor }) {
 OptionalDataDropdownGenres.propTypes = {
  isAdvancedFilter: PropTypes.string,
  htmlfor: PropTypes.string,
+ index: PropTypes.number,
 }
 
 export default memo(OptionalDataDropdownGenres);
