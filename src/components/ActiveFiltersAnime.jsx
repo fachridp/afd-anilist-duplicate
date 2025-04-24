@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router";
 import _ from "lodash";
 
@@ -31,14 +31,14 @@ function ActiveFiltersAnime() {
   return (key !== 'yearChange' && key !== 'episodesChange' && key !== 'durationChange' && key !== 'minimumTagPercentageChange') && JSON.stringify(sliderFilters[key]) !== JSON.stringify(SLIDERS_VALUES[key].defaultValue);
  });
 
- const handleClearActiveFilterItem = (event) => {
+ const handleClearActiveFilterItem = useCallback((event) => {
   const { value, origin } = event.currentTarget.dataset;
 
   Object.keys(selectedFiltersManager[origin]).forEach(key => {
    if (key !== "mergedCheckboxFilters" && key !== "mergedRadioFilters") {
     if (selectedFiltersManager[origin][key].length > 0) {
      if (selectedFiltersManager[origin][key].includes(value)) {
-      dispatch(origin === "checkboxDropdownFilters" ? setFilterCheckbox({ keyFilter: key, valueFilter: selectedFiltersManager[origin][key].filter(item => item !== value) }) : setFilterRadio({ keyFilter: key, valueFilter: !selectedFiltersManager[origin][key].includes(value) }));
+      dispatch(origin === "checkboxDropdownFilters" ? setFilterCheckbox({ keyFilter: key, valueFilter: selectedFiltersManager[origin][key].filter(item => item !== value) }) : setFilterRadio({ keyFilter: key, valueFilter: '' }));
      }
     }
    }
@@ -46,7 +46,7 @@ function ActiveFiltersAnime() {
 
   dispatch(setSearchingFilter({ keyFilter: 'searchGenresFilter', valueFilter: '' }));
   dispatch(setSearchingFilter({ keyFilter: 'searchYearFilter', valueFilter: '' }));
- }
+ }, [dispatch, selectedFiltersManager])
 
  const handleClearActiveSliderFilterItem = (event) => {
   const { fromFilter } = event.currentTarget.dataset;
