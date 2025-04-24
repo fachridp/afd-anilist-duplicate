@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { debounce } from "lodash";
-// import { FixedSizeList as List } from "react-window";
 
 // Import constant variables
 import { DROPDOWN_ITEMS } from "../constants/constants";

@@ -20,7 +20,7 @@ function DropdownGenresFilterContainer() {
           <svg className="w-3 cursor-pointer fill-white" aria-hidden="true" focusable="false" role="img" data-icon="minus" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 695 137"><path fillRule="evenodd" d="M68 0h558c38 0 69 31 69 68 0 38-31 69-69 69H68c-37 0-68-31-68-69C0 31 31 0 68 0Z" clipRule="evenodd" /></svg>
         </div>
 
-        <div className={`bg-background-100 rounded-md overflow-y-auto overflow-scroll-dropdown-filter shadow-md closest-genres-filter max-md:w-[90vw] px-2 ${isDropdownGenres ? 'max-h-[60vh] pb-2' : 'max-h-0'}`}>
+        <div className={`bg-background-100 rounded-md overflow-scroll-dropdown-filter overflow-y-auto shadow-md closest-genres-filter max-md:w-[90vw] px-2 ${isDropdownGenres ? 'max-h-[60vh] pb-2' : 'max-h-0'}`}>
           <h3 className="font-bold text-[13px] text-text uppercase tracking-wider pt-4">Genres</h3>
           <MainDataDropdownGenres isAdvancedFilter="false" htmlfor="genres" />
 

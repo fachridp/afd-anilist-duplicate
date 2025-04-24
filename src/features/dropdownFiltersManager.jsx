@@ -53,6 +53,7 @@ const initialState = {
    large: false,
   },
  },
+ sortLargeFilter: false,
  overlay: false,
  advancedGenresTag: false,
 }
@@ -73,6 +74,9 @@ export const dropdownFiltersManagerSlice = createSlice({
   setMainFilters: (state, action) => {
    state.mainFilters[action.payload.filterName][action.payload.screenSize] = action.payload.valueFilter;
   },
+  setSortLargeFilter: (state) => {
+   state.sortLargeFilter = !state.sortLargeFilter;
+  },
   openOverlay: (state, action) => {
    state.overlay = action.payload.screenSize < 1024 && true;
   },
@@ -85,5 +89,5 @@ export const dropdownFiltersManagerSlice = createSlice({
  }
 });
 
-export const { toggleDropdownBrowse, setExtraFilterButton, setMobileNav, setMainFilters, openOverlay, resetOverlay, toggleAdvancedGenresTag } = dropdownFiltersManagerSlice.actions;
+export const { toggleDropdownBrowse, setExtraFilterButton, setMobileNav, setMainFilters, setSortLargeFilter, openOverlay, resetOverlay, toggleAdvancedGenresTag } = dropdownFiltersManagerSlice.actions;
 export default dropdownFiltersManagerSlice.reducer;

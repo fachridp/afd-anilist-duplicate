@@ -39,7 +39,7 @@ function LargeExtraFilter() {
  }, [handleClickedOutsideFilterLarge]);
 
  return (
-  <div className={`flex gap-x-4 items-start closest-button-filter-large lg:bg-background-100 lg:rounded-[0.625rem] lg:shadow-md lg:w-[58rem] lg:flex-col lg:absolute lg:right-0 z-20 lg:top-[4.5rem] lg:px-10 lg:pt-8 ${!isExtraFilterLarge && "lg:hidden"}`}>
+  <div className={`flex gap-x-4 items-start closest-button-filter-large lg:bg-background-100 lg:rounded-[0.625rem] lg:shadow-md lg:w-[58rem] lg:flex-col lg:absolute lg:right-0 lg:top-[4.5rem] lg:px-10 lg:pt-8 ${!isExtraFilterLarge && "lg:hidden"}`}>
    <div className="flex gap-x-4 lg:grid lg:grid-cols-4 lg:gap-x-10">
     <InputFilterAnime
      key="airingStatus"

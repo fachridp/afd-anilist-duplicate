@@ -22,10 +22,6 @@ function ExtraFilter() {
      <GenresFilter />
 
      <YearFilter />
-     {/* <InputFilterAnime
-      key="year"
-      {...INPUT_FILTERS_PROPS.year}
-     /> */}
 
      <InputFilterAnime
       key="season"
