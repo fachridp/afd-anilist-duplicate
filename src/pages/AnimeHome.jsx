@@ -34,7 +34,7 @@ function AnimeHome() {
   return (
     <>
       {!location.search && (
-        <section className="mt-10 mx-3 lg:mx-7 space-y-10">
+        <section className="mt-10 mx-3 lg:mx-7 space-y-10 anime-home-wrapper">
           {/* Trending now */}
           <div>
             <Link to="search/anime/trending" className="flex items-center font-bold text-gray-700 mb-[1rem] tracking-wider">
@@ -238,6 +238,43 @@ function AnimeHome() {
                 ))}
             </div>
           </div>
+
+          {/* Top 100 anime */}
+          <div>
+            <Link to="search/anime/top-100" className="flex items-center font-bold text-gray-700 mb-[1rem] tracking-wider">
+              <p className="flex-1 hover:text-gray-800 ease-in-out duration-75">TOP 100 ANIME</p>
+              <p className="text-xs text-gray-600 hover:text-gray-800 ease-in-out duration-75">View All</p>
+            </Link>
+
+            <div className="grid grid-cols-[repeat(auto-fill,_minmax(120px,_1fr))] gap-5 items-start min-[1041px]:grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] min-[1041px]:gap-x-10">
+              {loading
+                ? <AnimeSkeleton />
+                : data?.top?.media.map((top100Anime, index) => (
+                  <div key={top100Anime.id} className="relative">
+                    <Link
+                      to={`anime/${top100Anime.id}/${top100Anime.title.userPreferred.replaceAll(' ', '-').replace(/[^a-zA-Z0-9-]/g, '').replaceAll('---', '--')}/`}
+                      key={top100Anime.id}
+                      className="rounded-md min-[1041px]:w-full grid grid-rows-[min-content,_auto] group">
+
+                      <div className="h-[200px] min-[1041px]:h-[270px]">
+                        <img width={184} height={270} src={width === 'medium' ? top100Anime.coverImage.large : top100Anime.coverImage.extraLarge} alt={_.lowerCase(top100Anime.title.english)} className="shadow-md h-full overflow-hidden rounded-md cursor-pointer object-cover" />
+                      </div>
+                    </Link>
+                    <p
+                      className="absolute -top-2 -left-1 rounded-full size-8 text-center content-center text-[0.875rem] font-bold"
+                      style={{
+                        backgroundColor: top100Anime.coverImage.color,
+                        color: '#fff',
+                      }}
+                    >#{index + 1}</p>
+                    <Link
+                      to={`anime/${top100Anime.title.userPreferred}`} className="pt-3 inline-block text-gray-700 text-xs font-semibold md:text-sm">{_.truncate(top100Anime.title.userPreferred, { length: width === 'large' ? 44 : 36, })}
+                    </Link>
+                  </div>
+                ))}
+            </div>
+          </div>
+
           {error && (<p>{error.message}</p>)}
         </section>
       )}

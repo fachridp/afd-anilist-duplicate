@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router";
 import _ from "lodash";
