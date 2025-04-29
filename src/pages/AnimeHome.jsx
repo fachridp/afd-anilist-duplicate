@@ -246,30 +246,64 @@ function AnimeHome() {
               <p className="text-xs text-gray-600 hover:text-gray-800 ease-in-out duration-75">View All</p>
             </Link>
 
-            <div className="grid grid-cols-[repeat(auto-fill,_minmax(120px,_1fr))] gap-5 items-start min-[1041px]:grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] min-[1041px]:gap-x-10">
+            <div className="grid grid-cols-[repeat(auto-fill,_minmax(120px,_1fr))] gap-5 items-start min-[1041px]:grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] min-[1041px]:gap-x-10 lg:flex lg:flex-col lg:justify-center lg:items-start lg:mb-10 lg:ml-5">
               {loading
                 ? <AnimeSkeleton />
                 : data?.top?.media.map((top100Anime, index) => (
-                  <div key={top100Anime.id} className="relative">
-                    <Link
-                      to={`anime/${top100Anime.id}/${top100Anime.title.userPreferred.replaceAll(' ', '-').replace(/[^a-zA-Z0-9-]/g, '').replaceAll('---', '--')}/`}
+                  <div key={top100Anime.id} className="relative lg:flex lg:items-center lg:gap-x-8 lg:w-full">
+                    <div
                       key={top100Anime.id}
-                      className="rounded-md min-[1041px]:w-full grid grid-rows-[min-content,_auto] group">
+                      className="min-[1041px]:w-full lg:bg-white grid grid-rows-[min-content,_auto] group lg:order-2 lg:flex lg:items-center lg:gap-x-4 lg:w-full lg:p-2">
 
-                      <div className="h-[200px] min-[1041px]:h-[270px]">
-                        <img width={184} height={270} src={width === 'medium' ? top100Anime.coverImage.large : top100Anime.coverImage.extraLarge} alt={_.lowerCase(top100Anime.title.english)} className="shadow-md h-full overflow-hidden rounded-md cursor-pointer object-cover" />
+                      <Link
+                        className="h-[200px] lg:w-[45px] lg:h-auto"
+                        to={`anime/${top100Anime.id}/${top100Anime.title.userPreferred.replaceAll(' ', '-').replace(/[^a-zA-Z0-9-]/g, '').replaceAll('---', '--')}/`}
+                      >
+                        <img width={184} height={270} src={width === 'medium' ? top100Anime.coverImage.large : top100Anime.coverImage.extraLarge} alt={_.lowerCase(top100Anime.title.english)} className="shadow-md h-full overflow-hidden rounded-sm cursor-pointer object-cover" />
+                      </Link>
+
+                      <div>
+                        <Link
+                          to={`anime/${top100Anime.title.userPreferred}`} className="pt-3 inline-block text-gray-700 text-xs font-semibold md:text-sm lg:py-0 lg:hover:text-red-500 duration-75 ease-in-out">{_.truncate(top100Anime.title.userPreferred, { length: width === 'large' ? 44 : 36, })}
+                        </Link>
+
+                        <div className="hidden lg:flex lg:gap-x-2">
+                          {top100Anime.genres.map((genre, index) => (
+                            index !== 5 && (
+                              <Link
+                                to={`search/anime/${genre}`}
+                                className="py-[1px] px-[10px] lowercase lg:text-[0.6875rem] lg:font-bold"
+                                key={index}
+                                style={{
+                                  backgroundColor: top100Anime.coverImage.color,
+                                  color: '#fff'
+                                }}
+                              >{genre}</Link>
+                            )
+                          ))}
+                        </div>
                       </div>
-                    </Link>
+                      {console.log(top100Anime)}
+                      <div>
+                        {/* Rating */}
+                        {/* Format */}
+                        {/* Season */}
+                      </div>
+                    </div>
+
                     <p
-                      className="absolute -top-2 -left-1 rounded-full size-8 text-center content-center text-[0.875rem] font-bold"
+                      className="absolute -top-2 -left-1 rounded-full size-8 text-center content-center text-[0.875rem] font-bold lg:hidden"
                       style={{
                         backgroundColor: top100Anime.coverImage.color,
                         color: '#fff',
                       }}
                     >#{index + 1}</p>
-                    <Link
-                      to={`anime/${top100Anime.title.userPreferred}`} className="pt-3 inline-block text-gray-700 text-xs font-semibold md:text-sm">{_.truncate(top100Anime.title.userPreferred, { length: width === 'large' ? 44 : 36, })}
-                    </Link>
+
+                    <p
+                      className="absolute -top-2 -left-1 rounded-full size-8 text-center content-center text-[0.875rem] font-bold lg:static lg:order-1 lg:text-2xl lg:text-gray-600"
+                    >
+                      #{index + 1}
+                    </p>
                   </div>
                 ))}
             </div>
