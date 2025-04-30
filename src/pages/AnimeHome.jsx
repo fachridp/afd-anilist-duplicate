@@ -15,8 +15,13 @@ import { SCREEN_SIZES } from "../constants/constants";
 import TooltipAnime from "../components/TooltipAnime";
 import AnimeSkeleton from "../components/reuseable/AnimeSkeleton";
 
+// Import utils
+import { formatMinutesToDuration } from "../utils/timeFormat";
+
 function AnimeHome() {
   const location = useLocation();
+
+  let emoteFaces;
 
   // RTK store
   const width = useSelector((state) => state.innerWidthManager.width < SCREEN_SIZES.large ? 'medium' : 'large');
@@ -31,6 +36,18 @@ function AnimeHome() {
       type: "ANIME"
     }
   });
+
+  if (data) {
+    data.top.media.map(top100Anime => {
+      if (top100Anime.averageScore > 69) {
+        emoteFaces = <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 28 28"><path fill="#8BF08B" d="M14 0a14 14 0 1 0 14 14A14.015 14.015 0 0 0 14 0Zm0 26a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12Z" /><path fill="#8BF08B" d="M21.431 17.134a1 1 0 0 0-1.367.366 7 7 0 0 1-12.128 0 1 1 0 1 0-1.731 1 9 9 0 0 0 15.59 0 1 1 0 0 0-.364-1.366ZM10 12a1 1 0 0 0 1-1V8a1 1 0 0 0-2 0v3a1 1 0 0 0 1 1ZM18 12a1 1 0 0 0 1-1V8a1 1 0 0 0-2 0v3a1 1 0 0 0 1 1Z" /></svg>
+      } else if (top100Anime.averageScore < 70) {
+        emoteFaces = <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 30 30"><path fill="#FF9646" fillRule="evenodd" d="M15 0C6.721 0 0 6.721 0 15s6.721 15 15 15 15-6.721 15-15S23.279 0 15 0Zm0 2c7.175 0 13 5.825 13 13s-5.825 13-13 13S2 22.175 2 15 7.825 2 15 2Zm-5 20h10a1 1 0 0 0 0-2H10a1 1 0 0 0 0 2ZM7 12h5a1 1 0 0 0 0-2H7a1 1 0 0 0 0 2Zm11 0h5a1 1 0 0 0 0-2h-5a1 1 0 0 0 0 2Z" clipRule="evenodd" /></svg>
+      } else if (top100Anime.averageScore < 50) {
+        emoteFaces = <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 28 28"><path fill="red" d="M14 0a14 14 0 1 0 14 14A14.015 14.015 0 0 0 14 0Zm0 26a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12Z" /><path fill="red" d="M14 16a8.96 8.96 0 0 0-7.025 3.375 1 1 0 1 0 1.56 1.25 7.002 7.002 0 0 1 10.93 0 1 1 0 1 0 1.56-1.25A8.958 8.958 0 0 0 14 16ZM10 12a1 1 0 0 0 1-1V8a1 1 0 0 0-2 0v3a1 1 0 0 0 1 1ZM18 12a1 1 0 0 0 1-1V8a1 1 0 0 0-2 0v3a1 1 0 0 0 1 1Z" /></svg>
+      }
+    })
+  }
   return (
     <>
       {!location.search && (
@@ -253,7 +270,7 @@ function AnimeHome() {
                   <div key={top100Anime.id} className="relative lg:flex lg:items-center lg:gap-x-8 lg:w-full">
                     <div
                       key={top100Anime.id}
-                      className="min-[1041px]:w-full lg:bg-white grid grid-rows-[min-content,_auto] group lg:order-2 lg:flex lg:items-center lg:gap-x-4 lg:w-full lg:p-2">
+                      className="min-[1041px]:w-full lg:bg-white grid grid-rows-[min-content,_auto] group lg:order-2 lg:flex lg:items-center lg:gap-x-4 lg:w-full lg:p-2 lg:shadow-md lg:rounded-md">
 
                       <Link
                         className="h-[200px] lg:w-[45px] lg:h-auto"
@@ -262,7 +279,7 @@ function AnimeHome() {
                         <img width={184} height={270} src={width === 'medium' ? top100Anime.coverImage.large : top100Anime.coverImage.extraLarge} alt={_.lowerCase(top100Anime.title.english)} className="shadow-md h-full overflow-hidden rounded-sm cursor-pointer object-cover" />
                       </Link>
 
-                      <div>
+                      <div className="basis-[34rem]">
                         <Link
                           to={`anime/${top100Anime.title.userPreferred}`} className="pt-3 inline-block text-gray-700 text-xs font-semibold md:text-sm lg:py-0 lg:hover:text-red-500 duration-75 ease-in-out">{_.truncate(top100Anime.title.userPreferred, { length: width === 'large' ? 44 : 36, })}
                         </Link>
@@ -272,7 +289,7 @@ function AnimeHome() {
                             index !== 5 && (
                               <Link
                                 to={`search/anime/${genre}`}
-                                className="py-[1px] px-[10px] lowercase lg:text-[0.6875rem] lg:font-bold"
+                                className="py-[1px] px-[10px] rounded-full mt-1 lowercase lg:text-[0.6875rem] lg:font-bold"
                                 key={index}
                                 style={{
                                   backgroundColor: top100Anime.coverImage.color,
@@ -283,11 +300,29 @@ function AnimeHome() {
                           ))}
                         </div>
                       </div>
-                      {console.log(top100Anime)}
-                      <div>
+
+                      <div className="hidden lg:grid lg:gap-x-6 lg:grid-cols-3 lg:auto-cols-auto">
                         {/* Rating */}
+                        <div className="flex items-start gap-x-3 w-32">
+                          {emoteFaces}
+
+                          <div className="text-sm font-semibold">
+                            <p className="text-gray-900">{top100Anime.averageScore}%</p>
+                            <p className="text-gray-600 text-xs">{top100Anime.popularity} users</p>
+                          </div>
+                        </div>
+
                         {/* Format */}
+                        <div className="text-sm font-semibold">
+                          <p className="text-gray-900">{top100Anime.format === 'TV' ? 'TV Show' : _.startCase(_.lowerCase(top100Anime.format))}</p>
+                          <p className="text-gray-600 text-xs">{top100Anime.format === 'MOVIE' ? formatMinutesToDuration(top100Anime.duration) : `${top100Anime.episodes} episodes`}</p>
+                        </div>
+
                         {/* Season */}
+                        <div className="text-sm font-semibold">
+                          <p className="text-gray-900">{_.startCase(_.lowerCase(top100Anime.season))} {top100Anime.seasonYear}</p>
+                          <p className="text-gray-600 text-xs">{_.lowerCase(top100Anime.status)}</p>
+                        </div>
                       </div>
                     </div>
 
